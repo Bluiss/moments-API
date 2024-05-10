@@ -65,7 +65,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = 'DEV' in os.environ
 
 
-ALLOWED_HOSTS = ['localhost', 'moments-hb-api-13c179d1512d.herokuapp.com']
+ALLOWED_HOSTS = ['localhost', os.environ.get('ALLOWED_HOST')]
 
 
 
