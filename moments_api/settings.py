@@ -111,11 +111,14 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
 ]
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://127.0.0.1:8000",
-    'https://moments-hb-b9a64daf59f3.herokuapp.com'
-]
+if 'CLIENT_ORIGIN' in os.environ:
+     CORS_ALLOWED_ORIGINS = [
+         os.environ.get('CLIENT_ORIGIN')
+     ]
+else:
+     CORS_ALLOWED_ORIGIN_REGEXES = [
+         "localhost:3000",
+     ]
 
 
 CORS_ALLOW_CREDENTIALS = True
