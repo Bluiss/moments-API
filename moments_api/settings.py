@@ -112,18 +112,17 @@ MIDDLEWARE = [
 ]
 
 # Check if CLIENT_ORIGIN is set in the environment
-if 'CLIENT_ORIGIN' in os.environ:
-    CORS_ALLOWED_ORIGINS = [
-        os.environ.get('CLIENT_ORIGIN'),
-        'http://localhost:3000'  # Add localhost:3000 to the allowed origins list
-    ]
-else:
-    # If CLIENT_ORIGIN is not set, fall back to using regex patterns
+if 'CLIENT_ORIGIN_DEV' in os.environ:
+    extracted_url = re.match(r'^.+-', os.environ.get('CLIENT_ORIGIN_DEV', ''), re.IGNORECASE).group(0)
     CORS_ALLOWED_ORIGIN_REGEXES = [
-        r"^https://.*\.gitpod\.io$",
-        r"^http://localhost:3000$"  # Add regex pattern for localhost:3000
+        rf"{extracted_url}(eu|us)\d+\w\.gitpod\.io$",
     ]
 
+# help from tutor to fix the frontend
+if 'CLIENT_ORIGIN' in os.environ:
+   CORS_ALLOWED_ORIGINS = [
+       os.environ.get('CLIENT_ORIGIN')
+]
 
 CORS_ALLOW_CREDENTIALS = True
 
