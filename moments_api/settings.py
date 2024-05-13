@@ -112,7 +112,7 @@ MIDDLEWARE = [
 ]
 
 # Check if CLIENT_ORIGIN is set in the environment
-CORS_ALLOWED_ORIGIN_REGEXES = [r"^https://.*\.gitpod\.io$",]
+CORS_ALLOWED_ORIGIN_REGEXES = [r"^https://.*\.gitpod\.io$", 'localhost:3000',]
 
 # help from tutor to fix the frontend
 if 'CLIENT_ORIGIN' in os.environ:
